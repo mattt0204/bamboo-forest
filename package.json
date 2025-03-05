@@ -26,8 +26,9 @@
     "@types/node": "^18.19.26",
     "dotenv-cli": "^7.4.1",
     "release-it": "^18.1.2",
-    "serverless-dotenv-plugin": "^4.0.2",
+    "serverless-dotenv-plugin": "^6.0.0",
     "serverless-offline": "^13.3.3",
+    "serverless-plugin-typescript": "^2.1.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.0.4"
   }

@@ -1,22 +1,40 @@
-service: serverless-bolt-js
-frameworkVersion: "4"
+service: bamboo-forest
+
 provider:
   name: aws
-  stage: ${opt:stage, 'dev'}
   runtime: nodejs18.x
-  deploymentMethod: direct
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'ap-northeast-2'}
+  environment:
+    SLACK_SIGNING_SECRET: ${env:SLACK_SIGNING_SECRET}
+    SLACK_BOT_TOKEN: ${env:SLACK_BOT_TOKEN}
+    SLACK_BAMBOO_CHANNEL: ${env:SLACK_BAMBOO_CHANNEL}
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
 functions:
-  slack:
-    handler: dist/app.handler
+  app:
+    handler: src/app.handler
     events:
       - http:
           path: slack/events
           method: post
-plugins:
-  - serverless-offline
-  - serverless-dotenv-plugin
-useDotenv: true
-custom:
-  dotenv:
-    exclude:
-      - GITHUB_TOKEN
+    timeout: 30
+    memorySize: 256
+
+package:
+  patterns:
+    - '!node_modules/.prisma/**'
+    - '!node_modules/@prisma/client/libquery_engine-*'
+    - '!node_modules/@prisma/client/runtime/**'
+    - '!node_modules/prisma/**'
+    - '!tests/**'
+    - '!coverage/**'
+    - '!.git/**'
+    - '!.vscode/**'
+    - '!README.md'
+    - '!.env*'
+    - '!tsconfig.json'
+    - '!jest.config.js'
+    - '!.gitignore'
