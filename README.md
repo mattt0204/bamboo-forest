@@ -33,6 +33,7 @@ https://user-images.githubusercontent.com/26682772/215256500-e1602815-263d-422c-
 1. 본 리포지터리를 클론하고 디펜던시를 설치합니다.
 
     ```sh
+    # node 20 이상 사용 가능
     $ npm install
 
     # or
@@ -83,6 +84,15 @@ https://user-images.githubusercontent.com/26682772/215256500-e1602815-263d-422c-
     # Request URL에는 다음과 같이 입력
     # https://f111-222-333-444-55.jp.ngrok.io/slack/events
     ```
+
+
+
+## serverless 배포
+```
+# serverless.com 회원 가입 
+$ serverless deploy
+```
+
 
 1. Slack에서 설정한 Request URL로 POST 이벤트를 전송합니다. 터널링이 됐다면 체크 표시가 뜹니다. 체크 표시가 뜬 이후부터 본 앱을 슬랙 워크스페이스에서 이용할 수 있습니다.
 
